@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- ══ LOGIN ══ -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.minigrocery.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_otp"
+            app:destination="@id/otpFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <!-- ══ OTP ══ -->
+    <fragment
+        android:id="@+id/otpFragment"
+        android:name="com.example.minigrocery.ui.auth.OtpFragment"
+        android:label="Verify OTP"
+        tools:layout="@layout/fragment_otp">
+        <action
+            android:id="@+id/action_otp_to_home"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <!-- popUpTo loginFragment + inclusive=true clears the back stack
+             so pressing Back from Home doesn't go back to Login -->
+    </fragment>
+
+    <!-- ══ HOME ══ -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.minigrocery.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_cart"
+            app:destination="@id/cartFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <!-- ══ CART ══ -->
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.minigrocery.ui.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cart_to_checkout"
+            app:destination="@id/checkoutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <!-- ══ CHECKOUT ══ -->
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.minigrocery.ui.checkout.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout">
+        <action
+            android:id="@+id/action_checkout_to_success"
+            app:destination="@id/successFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false"/>
+    </fragment>
+
+    <!-- ══ SUCCESS ══ -->
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="com.example.minigrocery.ui.success.SuccessFragment"
+        android:label="Order Placed"
+        tools:layout="@layout/fragment_success">
+        <action
+            android:id="@+id/action_success_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+</navigation>
